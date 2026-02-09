@@ -17,16 +17,24 @@ GPIO.output(LEDS, 0)
 
 num=0
 sleep_time = 0.2
+pressed = False
 
 while True:
+    if pressed:
+        GPIO.output(LEDS, dec2bin(0))
+        pressed = False
+
+    if GPIO.input(BUTTON_PLUS) == 1 and GPIO.input(BUTTON_MINUS) == 1 and pressed == False:
+        GPIO.output(LEDS, dec2bin(255))
+        pressed = True
+
     if GPIO.input(BUTTON_PLUS):
         num = min((num + 1),255)
         time.sleep(sleep_time)
-        print(num,dec2bin(num))
+        pressed = False
     if GPIO.input(BUTTON_MINUS):
         num = max((num - 1), 0)
         time.sleep(sleep_time)
-        print(num,dec2bin(num))
-    GPIO.output(LEDS, dec2bin(num))
-    
+        pressed = False
+    GPIO.output(LEDS, dec2bin(num))  
         
