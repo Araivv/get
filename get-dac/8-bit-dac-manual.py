@@ -14,12 +14,14 @@ def number_to_dac(value):
     return [int(element) for element in bin(value)[2:].zfill(8)]
 
 
+dac_bits = [22, 27, 17, 26, 25, 21, 20, 16]
+
 try:
     while True:
         try:
             voltage = float(input("Введите напряжение в Вольтах: "))
             number = voltage_to_number(voltage)
-            dac_bits = number_to_dac(number)
+            GPIO.output(dac_bits, number_to_dac(number))
 
         except ValueError:
             print("Вы ввели не число, попробуйте еще раз\n")
