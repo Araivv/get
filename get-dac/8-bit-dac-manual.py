@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 
-
 def voltage_to_number(voltage):
     if not (0.0 <= voltage <= 3.3):
         print(f"Напряжение выходит за динамический диапазон ЦАП (0.00 - 3.3 В)")
@@ -15,7 +14,9 @@ def number_to_dac(value):
 
 
 dac_bits = [22, 27, 17, 26, 25, 21, 20, 16]
-
+dac_bits = dac_bits[::-1]
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(dac_bits, GPIO.OUT)
 try:
     while True:
         try:
