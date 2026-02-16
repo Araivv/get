@@ -1,12 +1,14 @@
 import RPi.GPIO as GPIO
 
+dynamic_range = 3.15
+
 def voltage_to_number(voltage):
-    if not (0.0 <= voltage <= 3.3):
-        print(f"Напряжение выходит за динамический диапазон ЦАП (0.00 - 3.3 В)")
+    if not (0.0 <= voltage <= dynamic_range):
+        print(f"Напряжение выходит за динамический диапазон ЦАП (0.00 - {dynamic_range:.2f} В)")
         print("Устанавлниваем 0.0 В")
         return 0
 
-    return int(voltage / 3.3 * 255)
+    return int(voltage / dynamic_range * 255)
 
 
 def number_to_dac(value):
