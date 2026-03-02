@@ -30,7 +30,7 @@ class PWM_DAC:
             self.pwm.ChangeDutyCycle(duty_cycle)
             if self.verbose:
                 print(
-                    f"Установлено: {voltage}V (коэффициент заполнения: {duty_cycle:.2f}%)"
+                    f"Коэффициент заполнения: {duty_cycle:.2f}%"
                 )
 
 
