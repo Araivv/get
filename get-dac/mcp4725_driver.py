@@ -39,7 +39,7 @@ class I2C:
             )
             self.set_number(0)
         else:
-            self.set_number(voltage)
+            self.set_number(int(voltage/5*4096))
             if self.verbose:
                 print(f"Установлено: {voltage}V ")
 
