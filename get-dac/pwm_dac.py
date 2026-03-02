@@ -7,10 +7,10 @@ class PWM_DAC:
         self.pwm_frequency = pwm_frequency
         self.dynamic_range = dynamic_range
         self.verbose = verbose
-        self.pwm = GPIO.PWM(self.gpio_pin, self.pwm_frequency)
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.gpio_pin, GPIO.OUT, initial=0)
+        self.pwm = GPIO.PWM(self.gpio_pin, self.pwm_frequency)
 
     def deinit(self):
         GPIO.output(self.gpio_pin, 0)
@@ -18,6 +18,7 @@ class PWM_DAC:
 
     def set_number(self, number):
         GPIO.output(self.gpio_pin, number)
+        self.pwm.ChangeDutyCycle(number)
 
     def set_voltage(self, voltage):
         if not (0.0 <= voltage <= self.dynamic_range):
