@@ -7,7 +7,7 @@ GPIO.setup(LED, GPIO.OUT)
 
 
 state = 0
-pwm = GPIO.PWM(LED,200)
+pwm = GPIO.PWM(LED, 200)
 duty = 0.0
 pwm.start(duty)
 
@@ -17,6 +17,6 @@ while True:
 
     GPIO.output(LED, state)
 
-    duty+=1.0
-    if duty>100:
+    duty += 1.0
+    if duty > 100:
         duty = 0
