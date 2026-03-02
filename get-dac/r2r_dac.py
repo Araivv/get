@@ -32,7 +32,7 @@ class R2R_DAC:
 
 if __name__ == "__main__":
     try:
-        massive=[16, 20, 21, 25, 26, 17, 27, 22]
+        massive = [16, 20, 21, 25, 26, 17, 27, 22]
         dac = R2R_DAC(massive, 3.0, True)
 
         while True:
