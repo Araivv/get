@@ -22,8 +22,8 @@ class R2R_DAC:
             )
             print("Устанавлниваем 0.0 В")
             self.set_number(0)
-
-        self.set_number(int(voltage / self.dynamic_range * 255))
+        else:
+            self.set_number(int(voltage / self.dynamic_range * 255))
 
     def deinit(self):
         GPIO.output(self.gpio_bits, 0)
@@ -32,7 +32,8 @@ class R2R_DAC:
 
 if __name__ == "__main__":
     try:
-        dac = R2R_DAC([16, 20, 21, 25, 26, 17, 27, 22], 3.15, True)
+        massive=[16, 20, 21, 25, 26, 17, 27, 22]
+        dac = R2R_DAC(massive, 3.0, True)
 
         while True:
             try:
