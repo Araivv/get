@@ -1,5 +1,6 @@
 import smbus
 
+
 class MCP4725:
     def __init__(self, dynamic_range, address=0x61, verbose=True):
         self.bus = smbus.SMBus(1)
@@ -26,21 +27,25 @@ class MCP4725:
         self.bus.write_byte_data(self.address, first_byte, second_byte)
 
         if self.verbose:
-            print(f"Число: {number}, отправленные по I2C данные: [0x{(self.address << 1):02X}, 0x{first_byte:02X}, 0x{second_byte:02X}]\n")
+            print(
+                f"Число: {number}, отправленные по I2C данные: [0x{(self.address << 1):02X}, 0x{first_byte:02X}, 0x{second_byte:02X}]\n"
+            )
 
     def set_voltage(self, voltage):
         if not (0.0 <= voltage <= self.dynamic_range) and self.verbose:
-            print(f"Напряжение выходит за динамический диапазон ЦАП (0.00 - {self.dynamic_range:.2f} В)")
+            print(
+                f"Напряжение выходит за динамический диапазон ЦАП (0.00 - {self.dynamic_range:.2f} В)"
+            )
             self.set_number(0)
         else:
-            self.set_number(int(voltage/self.dynamic_range*4095))
+            self.set_number(int(voltage / self.dynamic_range * 4095))
             if self.verbose:
                 print(f"Установлено: {voltage}V ")
 
 
 if __name__ == "__main__":
     try:
-        dac = MCP4725(dynamic_range = 4.24)
+        dac = MCP4725(dynamic_range=4.24)
 
         while True:
             try:
@@ -51,6 +56,3 @@ if __name__ == "__main__":
                 print("Вы ввели не число. Попробуйте ещё раз\n")
     finally:
         dac.deinit()
-
-
-
