@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 import pwm_dac as pd
 import signal_generator as sg
 
@@ -6,6 +5,7 @@ amplitude = 3.0
 signal_frequency = 10
 sampling_frequency = 1000
 sampling_period = 1.0 / sampling_frequency
+time_counter = 0.0
 
 if __name__ == "__main__":
     try:

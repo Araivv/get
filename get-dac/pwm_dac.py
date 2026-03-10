@@ -28,8 +28,7 @@ class PWM_DAC:
         else:
             duty_cycle = (voltage / self.dynamic_range) * 100
             self.pwm.ChangeDutyCycle(duty_cycle)
-            if self.verbose:
-                print(f"Коэффициент заполнения: {duty_cycle:.2f}%")
+            
 
 
 if __name__ == "__main__":
