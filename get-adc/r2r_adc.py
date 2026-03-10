@@ -16,7 +16,7 @@ class R2R_ADC:
         GPIO.setup(self.comp_gpio, GPIO.IN)
 
     def deinit(self):
-        GPIO.output(self.gpio_bits, 0)
+        GPIO.output(self.bits_gpio, 0)
         GPIO.cleanup()
 
     def number_to_dac(self, number):
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     try:
         adc = R2R_ADC(dynamic_range=3.3)
         while True:
-            voltage = R2R_ADC.get_sar_voltage()
+            voltage = adc.get_sar_voltage()
             print(f"Напряжение: {voltage} В")
     finally:
         adc.deinit()
